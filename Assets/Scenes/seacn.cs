@@ -1,0 +1,3 @@
+[Scene: SeaCanvass]
+[Description: A vast ocean scene with a single sea can floating in the middle. The sun is setting, casting a warm orange glow across the water. The waves gently lap against the sides of the sea can, creating a soothing sound. Seagulls can be heard in the distance, adding to the serene atmosphere. The sky is painted with hues of pink and purple as the day comes to an end.]
+using UnityEngine; 

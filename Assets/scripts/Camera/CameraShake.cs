@@ -10,7 +10,12 @@ public class PlayerShake : MonoBehaviour
     void Start()
     {
         originalPos = transform.localPosition;
-        TriggerShake(shakeDuration, shakeMagnitude);
+    }
+
+    public void TriggerShake(float duration, float magnitude)
+    {
+        shakeDuration = duration;
+        shakeMagnitude = magnitude;
         originalPos = transform.localPosition;
     }
 
@@ -18,12 +23,12 @@ public class PlayerShake : MonoBehaviour
     {
         if (shakeDuration > 0)
         {
-            transform.LocalPosition = originalPos + random.insideUnitCricle*shakeMagnitude;
+            Vector2 shakeOffset = Random.insideUnitCircle * shakeMagnitude;
+            transform.localPosition = originalPos + new Vector3(shakeOffset.x, shakeOffset.y, 0f);    
             shakeDuration -= Time.deltaTime;
         }
         else
         {
-            shakeDuration = 0f;
             transform.localPosition = originalPos;
         }
     }

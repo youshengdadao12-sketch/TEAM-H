@@ -2,15 +2,15 @@
 using UnityEngine;
 public class CameraBounds : MonoBehaviour
 {
-    [serializeField] private Vector2 minBoundx;
-    [serializeField] private Vector2 maxBoundx;
-    [serializeField] private Vector2 minBoundy;
-    [serializeField] private Vector2 maxBoundy;
+    [SerializeField] private float minBoundx;
+    [SerializeField] private float maxBoundx;
+    [SerializeField] private float minBoundy;
+    [SerializeField] private float maxBoundy;
     void LateUpdate()
     {
         Vector3 clampedPosition = transform.position;
-        clampedPositon.x = Mathf.Clamp(clampedPosition.x, minBoundx.x, maxBoundx.x);
-        clampedPosition.y = Mathf.Clamp(clampedPosition.y, minBoundy.y, maxBoundy.y);
+        clampedPosition.x = Mathf.Clamp(clampedPosition.x, minBoundx, maxBoundx);
+        clampedPosition.y = Mathf.Clamp(clampedPosition.y, minBoundy, maxBoundy);
         transform.position = clampedPosition;
     }
 }

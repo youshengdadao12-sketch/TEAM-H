@@ -117,7 +117,8 @@ public static class TitleSceneBuilder
             new Vector2(0.58f, 0.30f),
             Gold,
             Background);
-        UnityEventTools.AddPersistentListener(startButton.onClick, manager.StartGame);
+        TitleSceneNavigator navigator = startButton.gameObject.AddComponent<TitleSceneNavigator>();
+        UnityEventTools.AddPersistentListener(startButton.onClick, navigator.StartGame);
 
         Button guideButton = CreateMenuButton(
             contentRect,
@@ -127,7 +128,6 @@ public static class TitleSceneBuilder
             new Vector2(0.58f, 0.175f),
             Hex("18313A"),
             TextMain);
-        UnityEventTools.AddPersistentListener(guideButton.onClick, manager.OpenGuide);
 
         Button quitButton = CreateMenuButton(
             contentRect,
@@ -137,17 +137,23 @@ public static class TitleSceneBuilder
             new Vector2(0.86f, 0.175f),
             Hex("281817"),
             Hex("E59080"));
-        UnityEventTools.AddPersistentListener(quitButton.onClick, manager.QuitGame);
+        TitleQuitController quitController = quitButton.gameObject.AddComponent<TitleQuitController>();
+        UnityEventTools.AddPersistentListener(quitButton.onClick, quitController.QuitGame);
 
-        GameObject guidePanel = CreateGuidePanel(canvasRect, manager);
+        (GameObject guidePanel, Button closeButton) = CreateGuidePanel(canvasRect);
+        TitleGuideController guideController = guideButton.gameObject.AddComponent<TitleGuideController>();
+        SerializedObject guideData = new(guideController);
+        guideData.FindProperty("guidePanel").objectReferenceValue = guidePanel;
+        guideData.FindProperty("closeButton").objectReferenceValue = closeButton;
+        guideData.ApplyModifiedPropertiesWithoutUndo();
+        UnityEventTools.AddPersistentListener(guideButton.onClick, guideController.OpenGuide);
+        UnityEventTools.AddPersistentListener(closeButton.onClick, guideController.CloseGuide);
 
         SerializedObject managerData = new(manager);
-        managerData.FindProperty("gameSceneName").stringValue = "SampleScene";
         managerData.FindProperty("mainGroup").objectReferenceValue = mainGroup;
         managerData.FindProperty("titleBlock").objectReferenceValue = titleBlock;
         managerData.FindProperty("accentPulse").objectReferenceValue = accentPulse;
         managerData.FindProperty("scanline").objectReferenceValue = scanline;
-        managerData.FindProperty("guidePanel").objectReferenceValue = guidePanel;
         managerData.FindProperty("firstSelected").objectReferenceValue = startButton;
         managerData.ApplyModifiedPropertiesWithoutUndo();
 
@@ -227,7 +233,9 @@ public static class TitleSceneBuilder
 
     private static Canvas CreateCanvas()
     {
-        GameObject canvasObject = new("TitleCanvas");
+        GameObject canvasObject = new("TitleCanvas", typeof(RectTransform));
+        RectTransform canvasRect = canvasObject.GetComponent<RectTransform>();
+        canvasRect.localScale = Vector3.one;
         Canvas canvas = canvasObject.AddComponent<Canvas>();
         canvas.renderMode = RenderMode.ScreenSpaceOverlay;
 
@@ -561,7 +569,7 @@ public static class TitleSceneBuilder
         return button;
     }
 
-    private static GameObject CreateGuidePanel(RectTransform parent, TitleManager manager)
+    private static (GameObject panel, Button closeButton) CreateGuidePanel(RectTransform parent)
     {
         RectTransform overlay = CreateImage(
             "GuidePanel",
@@ -626,10 +634,9 @@ public static class TitleSceneBuilder
             new Vector2(0.93f, 0.18f),
             Gold,
             Background);
-        UnityEventTools.AddPersistentListener(closeButton.onClick, manager.CloseGuide);
 
         overlay.gameObject.SetActive(false);
-        return overlay.gameObject;
+        return (overlay.gameObject, closeButton);
     }
 
     private static GameObject CreateUIObject(string name, Transform parent)

@@ -5,7 +5,6 @@ public class PlayerFollower : MonoBehaviour
 {
     [SerializeField] private Transform PlayerTransform;
     private Vector3 offset;
-    
     void Start()
     {
         offset = transform.position - PlayerTransform.position;

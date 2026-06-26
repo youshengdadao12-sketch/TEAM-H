@@ -41,6 +41,7 @@ public class PlayerController : MonoBehaviour
         Vector3 moveDirection = new Vector3(horizontal, 0f, vertical).normalized;
 
         Vector3 velocity = moveDirection * moveSpeed;
-        velocity.y = rb
+        velocity.y = rb.linearVelocity.y;
+        rb.linearVelocity = velocity;
     }
 }

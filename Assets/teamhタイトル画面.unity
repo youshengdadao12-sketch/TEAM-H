@@ -166,7 +166,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0.54901963, g: 0.76862746, b: 0.78431374, a: 0.018}
@@ -241,7 +241,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0.54901963, g: 0.76862746, b: 0.78431374, a: 0.018}
@@ -316,7 +316,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0.54901963, g: 0.76862746, b: 0.78431374, a: 0.018}
@@ -982,6 +982,7 @@ GameObject:
   - component: {fileID: 345031626}
   - component: {fileID: 345031625}
   - component: {fileID: 345031624}
+  - component: {fileID: 345031628}
   m_Layer: 0
   m_Name: EXIT
   m_TagString: Untagged
@@ -1025,6 +1026,18 @@ MonoBehaviour:
   m_EffectColor: {r: 0.9647059, g: 0.72156864, b: 0.24705882, a: 0.28}
   m_EffectDistance: {x: 2, y: -2}
   m_UseGraphicAlpha: 1
+--- !u!114 &345031628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 345031622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8c21d102ef04b0c879910f814c26595, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Assembly-CSharp::TitleQuitController
 --- !u!114 &345031625
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1069,8 +1082,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1318769269}
-        m_TargetAssemblyTypeName: TitleManager, Assembly-CSharp
+      - m_Target: {fileID: 345031628}
+        m_TargetAssemblyTypeName: TitleQuitController, Assembly-CSharp
         m_MethodName: QuitGame
         m_Mode: 0
         m_Arguments:
@@ -3664,6 +3677,7 @@ GameObject:
   - component: {fileID: 1173753459}
   - component: {fileID: 1173753458}
   - component: {fileID: 1173753457}
+  - component: {fileID: 1173753461}
   m_Layer: 0
   m_Name: SYSTEM_GUIDE
   m_TagString: Untagged
@@ -3707,6 +3721,20 @@ MonoBehaviour:
   m_EffectColor: {r: 0.9647059, g: 0.72156864, b: 0.24705882, a: 0.28}
   m_EffectDistance: {x: 2, y: -2}
   m_UseGraphicAlpha: 1
+--- !u!114 &1173753461
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1173753455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dd1f08f2ae94caa9a55b929255f7642, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Assembly-CSharp::TitleGuideController
+  guidePanel: {fileID: 775246551}
+  closeButton: {fileID: 1573906398}
 --- !u!114 &1173753458
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3751,8 +3779,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1318769269}
-        m_TargetAssemblyTypeName: TitleManager, Assembly-CSharp
+      - m_Target: {fileID: 1173753461}
+        m_TargetAssemblyTypeName: TitleGuideController, Assembly-CSharp
         m_MethodName: OpenGuide
         m_Mode: 0
         m_Arguments:
@@ -3905,7 +3933,7 @@ RectTransform:
   m_GameObject: {fileID: 1318769268}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1166211075}
@@ -4822,8 +4850,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1318769269}
-        m_TargetAssemblyTypeName: TitleManager, Assembly-CSharp
+      - m_Target: {fileID: 1173753461}
+        m_TargetAssemblyTypeName: TitleGuideController, Assembly-CSharp
         m_MethodName: CloseGuide
         m_Mode: 0
         m_Arguments:
@@ -5266,6 +5294,7 @@ GameObject:
   - component: {fileID: 1837836764}
   - component: {fileID: 1837836763}
   - component: {fileID: 1837836765}
+  - component: {fileID: 1837836768}
   m_Layer: 0
   m_Name: START_MISSION
   m_TagString: Untagged
@@ -5317,8 +5346,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1318769269}
-        m_TargetAssemblyTypeName: TitleManager, Assembly-CSharp
+      - m_Target: {fileID: 1837836768}
+        m_TargetAssemblyTypeName: TitleSceneNavigator, Assembly-CSharp
         m_MethodName: StartGame
         m_Mode: 0
         m_Arguments:
@@ -5374,6 +5403,19 @@ MonoBehaviour:
   m_EffectColor: {r: 0.9647059, g: 0.72156864, b: 0.24705882, a: 0.8}
   m_EffectDistance: {x: 2, y: -2}
   m_UseGraphicAlpha: 1
+--- !u!114 &1837836768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1837836762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71c0963984da4b6a85af41427b43ed11, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Assembly-CSharp::TitleSceneNavigator
+  destinationScenePath: Assets/Scenes/SampleScene.unity
 --- !u!222 &1837836766
 CanvasRenderer:
   m_ObjectHideFlags: 0

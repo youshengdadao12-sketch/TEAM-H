@@ -17,6 +17,8 @@ public sealed class TitleManager : MonoBehaviour
 
     private void Awake()
     {
+        transform.localScale = Vector3.one;
+
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         ApplyJapaneseFont();
